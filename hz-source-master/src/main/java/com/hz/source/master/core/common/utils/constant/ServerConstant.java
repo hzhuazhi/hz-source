@@ -70,7 +70,24 @@ public class ServerConstant {
         public static final int RUN_NUM_FIVE = 5;
 
 
+        /**
+         * 微信收款助手绑定成功
+         */
+        public static final String BING = "接受邀请成功";
+
+        /**
+         * 微信收款助手解除成功
+         */
+        public static final String UNBOUND = "店员通知取消";
+
+        /**
+         * 店员收款助手
+         */
+        public static final String WECHATHELPER = "店员收款助手";
+
+
     }
+
 
 
 

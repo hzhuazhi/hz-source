@@ -18,5 +18,8 @@ public class ComponentUtil {
     public static QuestionDService questionDService;
     public static TaskService taskService;
     public static TaskHodgepodgeService taskHodgepodgeService;
+    public static DispatchService dispatchService;
+    public static MobileCardDataService mobileCardDataService;
+    public static CatAllDataModelService catAllDataModelService;
 
 }

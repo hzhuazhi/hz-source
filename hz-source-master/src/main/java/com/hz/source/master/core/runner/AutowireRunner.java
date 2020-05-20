@@ -56,6 +56,19 @@ public class AutowireRunner implements ApplicationRunner {
     @Autowired
     private RegionService regionService;
 
+    @Autowired
+    private DispatchService dispatchService;
+
+
+    @Autowired
+    private MobileCardDataService mobileCardDataService;
+
+
+    @Autowired
+    private CatAllDataModelService catAllDataModelService;
+
+
+
 
 
 
@@ -76,15 +89,11 @@ public class AutowireRunner implements ApplicationRunner {
         ComponentUtil.taskService = taskService;
         ComponentUtil.taskHodgepodgeService = taskHodgepodgeService;
         ComponentUtil.regionService = regionService;
-
+        ComponentUtil.dispatchService =dispatchService;
+        ComponentUtil.mobileCardDataService =mobileCardDataService;
+        ComponentUtil.catAllDataModelService =catAllDataModelService;
         runThread = new RunThread();
         runThread.start();
-
-
-
-
-
-
     }
 
     /**

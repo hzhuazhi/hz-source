@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hz.source.master.core.mapper.CatAllDataMapper">
+
+
+    <!-- 定义数据库基本列,只适用代替单表的*-->
+    <sql id="Base_Column_List">
+        a.id,a.mobile_card_id,a.phone_num,a.sms_content,a.data_type,a.curday,a.curhour,a.curminute,a.run_num,a.run_status,a.create_time,a.create_time
+        ,a.update_time,a.ts_time,a.yn
+    </sql>
+
+
+    <!-- 添加基本信息 -->
+    <insert id="addCatAllData" parameterType="com.hz.source.master.core.model.result.CatAllDataModel" >
+        insert into tb_fn_cat_all_data
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="jsonData != null" >
+                json_data,
+            </if>
+            <if test="curday != null" >
+                curday,
+            </if>
+            <if test="curhour != null" >
+                curhour,
+            </if>
+            <if test="curminute != null" >
+                curminute,
+            </if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="jsonData != null" >
+                #{jsonData},
+            </if>
+            <if test="curday != null" >
+                #{curday},
+            </if>
+            <if test="curhour != null" >
+                #{curhour},
+            </if>
+            <if test="curminute != null" >
+                #{curminute},
+            </if>
+            NOW(),
+        </trim>
+    </insert>
+
+
+
+</mapper>
