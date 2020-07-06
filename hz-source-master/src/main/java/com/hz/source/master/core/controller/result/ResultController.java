@@ -5,6 +5,7 @@ import com.hz.source.master.core.common.utils.StringUtil;
 import com.hz.source.master.core.controller.question.QuestionController;
 import com.hz.source.master.core.model.ResponseEncryptionJson;
 import com.hz.source.master.core.model.result.CatAllDataModel;
+import com.hz.source.master.core.model.result.ClientAllDataModel;
 import com.hz.source.master.core.model.result.MobileCardDataModel;
 import com.hz.source.master.core.model.sms.SmsData;
 import com.hz.source.master.core.model.wechar.LovelyCatData;
@@ -71,7 +72,7 @@ public class ResultController {
     public JsonResult<Object> wechat(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> obj) throws Exception{
         //判断是需要的状态码
 //        ComponentUtil.dispatchService.disp(lovelyCatData);
-        log.info("==============:进来了！");
+        log.info("==============:wechat 进来了！");
         System.out.println("==================="+obj.get("msg_type"));
         CatAllDataModel catAllDataModel=WecharMethod.toCatAllDataModel(obj);
         ComponentUtil.catAllDataModelService.addCatAllDataModel(catAllDataModel);
@@ -79,4 +80,18 @@ public class ResultController {
         //内容判断 1、取消管理员 2、添加 管理员 3、支付内容
         return JsonResult.successResult("", "", "");
     }
+
+    @PostMapping(value = "/alNotice")
+    public JsonResult<Object> alNotice(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> obj) throws Exception{
+        //判断是需要的状态码
+//        ComponentUtil.dispatchService.disp(lovelyCatData);
+        log.info("==============:alNotice 进来了！");
+        ClientAllDataModel clientAllDataModel=WecharMethod.toClientAllDataModel(obj);
+        ComponentUtil.clientAllDataModelService.addClientAllDataModel(clientAllDataModel);
+
+        //内容判断 1、取消管理员 2、添加 管理员 3、支付内容
+        return JsonResult.successResult("", "", "");
+    }
+
+
 }

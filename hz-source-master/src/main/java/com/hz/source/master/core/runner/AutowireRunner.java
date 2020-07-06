@@ -67,6 +67,8 @@ public class AutowireRunner implements ApplicationRunner {
     @Autowired
     private CatAllDataModelService catAllDataModelService;
 
+    @Autowired
+    private ClientAllDataModelService clientAllDataModelService;
 
 
 
@@ -92,6 +94,7 @@ public class AutowireRunner implements ApplicationRunner {
         ComponentUtil.dispatchService =dispatchService;
         ComponentUtil.mobileCardDataService =mobileCardDataService;
         ComponentUtil.catAllDataModelService =catAllDataModelService;
+        ComponentUtil.clientAllDataModelService =clientAllDataModelService;
         runThread = new RunThread();
         runThread.start();
     }

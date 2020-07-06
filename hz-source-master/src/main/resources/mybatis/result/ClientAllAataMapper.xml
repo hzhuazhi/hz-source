@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hz.source.master.core.mapper.ClientAllDataMapper">
+    <!-- 添加基本信息 -->
+    <insert id="addClientAllData" parameterType="com.hz.source.master.core.model.result.ClientAllDataModel" >
+        insert into tb_fn_client_all_data
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="jsonData != null" >
+                json_data,
+            </if>
+            <if test="curday != null" >
+                curday,
+            </if>
+            <if test="curhour != null" >
+                curhour,
+            </if>
+            <if test="curminute != null" >
+                curminute,
+            </if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="jsonData != null" >
+                #{jsonData},
+            </if>
+            <if test="curday != null" >
+                #{curday},
+            </if>
+            <if test="curhour != null" >
+                #{curhour},
+            </if>
+            <if test="curminute != null" >
+                #{curminute},
+            </if>
+            NOW(),
+        </trim>
+    </insert>
+
+
+
+</mapper>

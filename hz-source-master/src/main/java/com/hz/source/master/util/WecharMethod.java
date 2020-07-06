@@ -8,6 +8,7 @@ import com.hz.source.master.core.common.utils.StringUtil;
 import com.hz.source.master.core.common.utils.constant.ServerConstant;
 import com.hz.source.master.core.model.common.DateModel;
 import com.hz.source.master.core.model.result.CatAllDataModel;
+import com.hz.source.master.core.model.result.ClientAllDataModel;
 import com.hz.source.master.core.model.result.MobileCardDataModel;
 import com.hz.source.master.core.model.result.MobileCardDataModel;
 import com.hz.source.master.core.model.sms.SmsData;
@@ -157,6 +158,22 @@ public class WecharMethod {
         String  jsonData = MapUtil.mapToJson(map);
         catAllDataModel.setJsonData(jsonData);
         return catAllDataModel;
+    }
+
+
+    /**
+     * @Description: map 转 ClientAllDataModel
+     * @param map
+     * @return com.hz.source.master.core.model.result.CatAllDataModel
+     * @date 2020/5/20 15:27
+     */
+    public  static ClientAllDataModel toClientAllDataModel(Map<String,Object> map){
+        DateModel dateModel =WecharMethod.getDate();
+        ClientAllDataModel   clientAllDataModel = new   ClientAllDataModel();
+        BeanUtils.copy(dateModel,clientAllDataModel);
+        String  jsonData = MapUtil.mapToJson(map);
+        clientAllDataModel.setJsonData(jsonData);
+        return clientAllDataModel;
     }
 
 
