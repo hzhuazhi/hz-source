@@ -163,15 +163,16 @@ public class WecharMethod {
 
     /**
      * @Description: map 转 ClientAllDataModel
-     * @param map
+     * @param jsonData
      * @return com.hz.source.master.core.model.result.CatAllDataModel
      * @date 2020/5/20 15:27
      */
-    public  static ClientAllDataModel toClientAllDataModel(Map<String,Object> map){
-        DateModel dateModel =WecharMethod.getDate();
+    public  static ClientAllDataModel toClientAllDataModel(String  jsonData){
+        DateModel dateModel = WecharMethod.getDate();
         ClientAllDataModel   clientAllDataModel = new   ClientAllDataModel();
         BeanUtils.copy(dateModel,clientAllDataModel);
-        String  jsonData = MapUtil.mapToJson(map);
+//        String  jsonData = (String) JSON.toJSON(obj);
+//        String  jsonData = MapUtil.mapToJson(map);
         clientAllDataModel.setJsonData(jsonData);
         return clientAllDataModel;
     }

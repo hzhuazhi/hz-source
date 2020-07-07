@@ -1,5 +1,6 @@
 package com.hz.source.master.core.controller.result;
 
+import com.alibaba.fastjson.JSON;
 import com.hz.source.master.core.common.utils.JsonResult;
 import com.hz.source.master.core.common.utils.StringUtil;
 import com.hz.source.master.core.controller.question.QuestionController;
@@ -82,11 +83,11 @@ public class ResultController {
     }
 
     @PostMapping(value = "/alNotice")
-    public JsonResult<Object> alNotice(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> obj) throws Exception{
+    public JsonResult<Object> alNotice(HttpServletRequest request, HttpServletResponse response, @RequestBody Object obj) throws Exception{
         //判断是需要的状态码
 //        ComponentUtil.dispatchService.disp(lovelyCatData);
-        log.info("==============:alNotice 进来了！");
-        ClientAllDataModel clientAllDataModel=WecharMethod.toClientAllDataModel(obj);
+        log.error("ResultController.alNotice():" + JSON.toJSON(obj));
+        ClientAllDataModel clientAllDataModel = WecharMethod.toClientAllDataModel(JSON.toJSON(obj).toString());
         ComponentUtil.clientAllDataModelService.addClientAllDataModel(clientAllDataModel);
 
         //内容判断 1、取消管理员 2、添加 管理员 3、支付内容
