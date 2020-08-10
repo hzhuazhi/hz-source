@@ -8,6 +8,7 @@ import com.hz.source.master.core.model.ResponseEncryptionJson;
 import com.hz.source.master.core.model.result.CatAllDataModel;
 import com.hz.source.master.core.model.result.ClientAllDataModel;
 import com.hz.source.master.core.model.result.MobileCardDataModel;
+import com.hz.source.master.core.model.result.WxAllDataModel;
 import com.hz.source.master.core.model.sms.SmsData;
 import com.hz.source.master.core.model.wechar.LovelyCatData;
 import com.hz.source.master.util.ComponentUtil;
@@ -74,6 +75,7 @@ public class ResultController {
         //判断是需要的状态码
 //        ComponentUtil.dispatchService.disp(lovelyCatData);
         log.info("==============:wechat 进来了！");
+        log.info("==============:map"+obj);
         System.out.println("==================="+obj.get("msg_type"));
         CatAllDataModel catAllDataModel=WecharMethod.toCatAllDataModel(obj);
         ComponentUtil.catAllDataModelService.addCatAllDataModel(catAllDataModel);
@@ -81,6 +83,45 @@ public class ResultController {
         //内容判断 1、取消管理员 2、添加 管理员 3、支付内容
         return JsonResult.successResult("", "", "");
     }
+
+
+//    @GetMapping(value = "/newWechat")
+//    public JsonResult<Object> newWechat(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> obj) throws Exception{
+//        //判断是需要的状态码
+////        ComponentUtil.dispatchService.disp(lovelyCatData);
+//        log.info("==============:wechat 进来了！");
+//        log.info("==============:map"+obj);
+//        System.out.println("==================="+obj.get("msg_type"));
+//        CatAllDataModel catAllDataModel=WecharMethod.toCatAllDataModel(obj);
+//        ComponentUtil.catAllDataModelService.addCatAllDataModel(catAllDataModel);
+//
+//        //内容判断 1、取消管理员 2、添加 管理员 3、支付内容
+//        return JsonResult.successResult("", "", "");
+//    }
+
+
+    /**
+     * @Description: 接收阿里支付宝的数据-APP
+     * @param request
+     * @param response
+     * @return com.gd.chain.common.utils.JsonResult<java.lang.Object>
+     * @author yoko
+     * @date 2019/11/25 22:58
+     * local:http://localhost:8082/ad/ad/getNotify
+     */
+    @RequestMapping(value = "/newwechat", method = {RequestMethod.GET})
+    public void newwechat(HttpServletRequest request, HttpServletResponse response,@RequestParam Map<String, Object> obj) throws Exception{
+        try{
+            log.error("ResultController.newwechat()----------进来了!");
+            log.error("ResultController.newwechat():" + JSON.toJSON(obj));
+            WxAllDataModel wxAllDataModel= WecharMethod.toWxAllDataModel(JSON.toJSON(obj).toString());
+            ComponentUtil.wxAllDataModelService.add(wxAllDataModel);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 
     @PostMapping(value = "/alNotice")
     public JsonResult<Object> alNotice(HttpServletRequest request, HttpServletResponse response, @RequestBody Object obj) throws Exception{

@@ -7,9 +7,7 @@ import com.hz.source.master.core.common.utils.MapUtil;
 import com.hz.source.master.core.common.utils.StringUtil;
 import com.hz.source.master.core.common.utils.constant.ServerConstant;
 import com.hz.source.master.core.model.common.DateModel;
-import com.hz.source.master.core.model.result.CatAllDataModel;
-import com.hz.source.master.core.model.result.ClientAllDataModel;
-import com.hz.source.master.core.model.result.MobileCardDataModel;
+import com.hz.source.master.core.model.result.*;
 import com.hz.source.master.core.model.result.MobileCardDataModel;
 import com.hz.source.master.core.model.sms.SmsData;
 import com.hz.source.master.core.model.wechar.Msg;
@@ -158,6 +156,15 @@ public class WecharMethod {
         String  jsonData = MapUtil.mapToJson(map);
         catAllDataModel.setJsonData(jsonData);
         return catAllDataModel;
+    }
+
+
+    public  static WxAllDataModel toWxAllDataModel(String jsonData){
+        DateModel dateModel =WecharMethod.getDate();
+        WxAllDataModel   wxAllDataModel = new   WxAllDataModel();
+        BeanUtils.copy(dateModel,wxAllDataModel);
+        wxAllDataModel.setJsonData(jsonData);
+        return wxAllDataModel;
     }
 
 

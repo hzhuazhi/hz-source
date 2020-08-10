@@ -1,7 +1,7 @@
 package com.hz.source.master.core.model.result;
 
 
-public class CatAllDataModel {
+public class WxAllDataModel {
     private String  jsonData;
     private Integer curday;
     private Integer curhour;

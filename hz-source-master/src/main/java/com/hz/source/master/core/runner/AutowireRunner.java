@@ -70,13 +70,8 @@ public class AutowireRunner implements ApplicationRunner {
     @Autowired
     private ClientAllDataModelService clientAllDataModelService;
 
-
-
-
-
-
-
-
+    @Autowired
+    private WxAllDataModelService wxAllDataModelService;
 
 
     @Override
@@ -95,6 +90,7 @@ public class AutowireRunner implements ApplicationRunner {
         ComponentUtil.mobileCardDataService =mobileCardDataService;
         ComponentUtil.catAllDataModelService =catAllDataModelService;
         ComponentUtil.clientAllDataModelService =clientAllDataModelService;
+        ComponentUtil.wxAllDataModelService =wxAllDataModelService;
         runThread = new RunThread();
         runThread.start();
     }

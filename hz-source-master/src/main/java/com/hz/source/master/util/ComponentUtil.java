@@ -22,5 +22,6 @@ public class ComponentUtil {
     public static MobileCardDataService mobileCardDataService;
     public static CatAllDataModelService catAllDataModelService;
     public static ClientAllDataModelService clientAllDataModelService;
+    public static WxAllDataModelService wxAllDataModelService;
 
 }
