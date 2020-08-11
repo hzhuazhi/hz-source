@@ -114,8 +114,13 @@ public class ResultController {
         try{
             log.error("ResultController.newwechat()----------进来了!");
             log.error("ResultController.newwechat():" + JSON.toJSON(obj));
-            WxAllDataModel wxAllDataModel= WecharMethod.toWxAllDataModel(JSON.toJSON(obj).toString());
-            ComponentUtil.wxAllDataModelService.add(wxAllDataModel);
+            String dataStr = "";
+            if (obj != null && obj.size() > 0){
+                dataStr = obj.get("data").toString();
+                dataStr = dataStr.replaceAll("'", "\"");
+                WxAllDataModel wxAllDataModel= WecharMethod.toWxAllDataModel(dataStr);
+                ComponentUtil.wxAllDataModelService.add(wxAllDataModel);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
