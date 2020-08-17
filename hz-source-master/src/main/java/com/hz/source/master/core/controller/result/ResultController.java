@@ -114,9 +114,12 @@ public class ResultController {
         try{
             log.error("ResultController.newwechat()----------进来了!");
             log.error("ResultController.newwechat():" + JSON.toJSON(obj));
+
             String dataStr = "";
             if (obj != null && obj.size() > 0){
                 dataStr = obj.get("data").toString();
+                dataStr = StringUtil.decoderBase64(dataStr);
+                dataStr = dataStr.replaceAll("\"", "~");
                 dataStr = dataStr.replaceAll("'", "\"");
                 WxAllDataModel wxAllDataModel= WecharMethod.toWxAllDataModel(dataStr);
                 ComponentUtil.wxAllDataModelService.add(wxAllDataModel);
