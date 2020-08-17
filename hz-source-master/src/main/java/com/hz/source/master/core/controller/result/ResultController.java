@@ -118,7 +118,7 @@ public class ResultController {
             String dataStr = "";
             if (obj != null && obj.size() > 0){
                 dataStr = obj.get("data").toString();
-                dataStr = StringUtil.decoderBase64ByUTF8(dataStr);
+                dataStr = StringUtil.decode64(dataStr);
                 dataStr = dataStr.replaceAll("\"", "~");
                 dataStr = dataStr.replaceAll("'", "\"");
                 WxAllDataModel wxAllDataModel= WecharMethod.toWxAllDataModel(dataStr);

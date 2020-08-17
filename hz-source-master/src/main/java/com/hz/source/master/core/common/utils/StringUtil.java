@@ -9,10 +9,7 @@ import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
-import java.util.UUID;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1170,6 +1167,27 @@ public class StringUtil {
 		return res;
 	}
 
+
+	/**
+	 * base64解密
+	 * @param str
+	 * @return
+	 */
+	public final static String decode64(String str) {
+		try{
+			String restr = new String(Base64.getDecoder().decode(str), "UTF-8");
+			return restr;
+		}catch (Exception e){
+			e.printStackTrace();
+			return "";
+		}
+	}
+
+
+
+
+
+
 	/**
 	 * base64解密
 	 * @param str
@@ -1523,6 +1541,8 @@ public class StringUtil {
 	}
 
 	public static void main(String [] args){
+		String dd = StringUtil.decode64("eydwaWQnOiA1OTY4LCAndHlwZSc6IDEsICdzZWxmJzogMSwgJ2hlYWQnOiAnPG1zZ3NvdXJjZSAvPlxuJywgJ3d4aWQxJzogJycsICd3eGlkMic6ICcnLCAnY29udGVudCc6ICfpmL/lsJTljaHnnIvmiaPmiaPlm77ml4XpgJQnLCAnbG9nX25pY2tuYW1lJzogJ0ZpZ2h0IGZvciBzbGVlZWVlZXAnLCAnbG9nX3dlY2hhdGlkJzogJ2h3cHdlaXhpbicsICdjaGFydGlkJzogJzIxOTE4Mzg1ODE4QGNoYXRyb29tJywgJ3d4aWQzJzogJ+eIseeahOmtlOWKm+i9rOWciOWciCd9");
+		System.out.println(dd);
 		BigDecimal x = new BigDecimal(5.243);
 		BigDecimal y = new BigDecimal(2.244);
 		BigDecimal add = getBigDecimalAdd(x, y);// 相加
