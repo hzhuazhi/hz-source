@@ -118,6 +118,12 @@ public class ResultController {
             String dataStr = "";
             if (obj != null && obj.size() > 0){
                 dataStr = obj.get("data").toString();
+                log.error("替换前dataStr:" + dataStr);
+
+                dataStr=dataStr.replaceAll("\n", "");
+                dataStr=dataStr.replaceAll(" ", "+");
+
+                log.error("替换后dataStr:" + dataStr);
                 dataStr = StringUtil.decode64(dataStr);
                 dataStr = dataStr.replaceAll("\"", "~");
                 dataStr = dataStr.replaceAll("'", "\"");
