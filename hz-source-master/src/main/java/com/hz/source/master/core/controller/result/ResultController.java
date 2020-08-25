@@ -10,6 +10,7 @@ import com.hz.source.master.core.model.result.ClientAllDataModel;
 import com.hz.source.master.core.model.result.MobileCardDataModel;
 import com.hz.source.master.core.model.result.WxAllDataModel;
 import com.hz.source.master.core.model.sms.SmsData;
+import com.hz.source.master.core.model.sms.SmsInfo;
 import com.hz.source.master.core.model.wechar.LovelyCatData;
 import com.hz.source.master.util.ComponentUtil;
 import com.hz.source.master.util.WecharMethod;
@@ -147,6 +148,41 @@ public class ResultController {
 
         //内容判断 1、取消管理员 2、添加 管理员 3、支付内容
         return JsonResult.successResult("", "", "");
+    }
+
+
+    @RequestMapping(value = "/sendSms", method = {RequestMethod.POST})
+    public JsonResult<Object> sendSms(HttpServletRequest request, HttpServletResponse response, @RequestBody SmsInfo sms) throws Exception{
+        String sgid = ComponentUtil.redisIdService.getNewId();
+        String cgid = "";
+        String token;
+        String ip = StringUtil.getIpAddress(request);
+
+        String data = "";
+//        log.error("SecretKey:"+sms.getKey());
+//        log.error("sender:"+smsData.get);
+//        log.error("PhoneId:"+smsData.getPhoneId());
+//        log.error("Content:"+smsData.getContent());
+//        boolean  flag  =   WecharMethod.isEffectiveSmsData(smsData);//是否有效
+//
+//        if(!flag){
+//            return JsonResult.failedResult("", "", "400");
+//        }
+
+        MobileCardDataModel mobileCardDataModel = WecharMethod.toSmsData(sms);
+
+        try{
+            ComponentUtil.mobileCardDataService.addMobileCardData(mobileCardDataModel);
+            ResponseEncryptionJson resultDataModel = new ResponseEncryptionJson();
+            resultDataModel.jsonData = "ok";
+            // 返回数据给客户端
+            return JsonResult.successResult(resultDataModel, cgid, sgid);
+        }catch (Exception e){
+            e.printStackTrace();
+            return JsonResult.failedResult("数据异常","500");
+        }
+//        mobileCardDataService
+
     }
 
 

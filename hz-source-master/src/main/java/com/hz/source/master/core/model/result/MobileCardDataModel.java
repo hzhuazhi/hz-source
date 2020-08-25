@@ -37,6 +37,8 @@ public class MobileCardDataModel extends BasePage implements Serializable {
     private String  runStatus;
     private String  createTime;
     private String  updateTime;
+    private String  markPosition;
+    private String  reportTime;
     private String  tsTime;
 
     public static long getSerialVersionUID() {
@@ -153,5 +155,21 @@ public class MobileCardDataModel extends BasePage implements Serializable {
 
     public void setSmsNum(String smsNum) {
         this.smsNum = smsNum;
+    }
+
+    public String getMarkPosition() {
+        return markPosition;
+    }
+
+    public void setMarkPosition(String markPosition) {
+        this.markPosition = markPosition;
+    }
+
+    public String getReportTime() {
+        return reportTime;
+    }
+
+    public void setReportTime(String reportTime) {
+        this.reportTime = reportTime;
     }
 }

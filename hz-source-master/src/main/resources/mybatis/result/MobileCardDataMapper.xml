@@ -35,6 +35,12 @@
             <if test="curhour != null" >
                 curhour,
             </if>
+            <if test="markPosition != null" >
+                mark_position,
+            </if>
+            <if test="reportTime != null" >
+                report_time,
+            </if>
             <if test="curminute != null" >
                 curminute,
             </if>
@@ -61,6 +67,12 @@
             </if>
             <if test="curhour != null" >
                 #{curhour},
+            </if>
+            <if test="markPosition != null" >
+                #{markPosition},
+            </if>
+            <if test="reportTime != null" >
+                #{reportTime},
             </if>
             <if test="curminute != null" >
                 #{curminute},

@@ -10,6 +10,7 @@ import com.hz.source.master.core.model.common.DateModel;
 import com.hz.source.master.core.model.result.*;
 import com.hz.source.master.core.model.result.MobileCardDataModel;
 import com.hz.source.master.core.model.sms.SmsData;
+import com.hz.source.master.core.model.sms.SmsInfo;
 import com.hz.source.master.core.model.wechar.Msg;
 import org.apache.commons.lang.StringUtils;
 import org.dom4j.Document;
@@ -121,6 +122,25 @@ public class WecharMethod {
         fnMobileCardDataModel.setPhoneNum(smsData.getPhoneId());
         fnMobileCardDataModel.setSmsContent(smsData.getContent());
         fnMobileCardDataModel.setSmsNum(smsData.getSender());
+        return fnMobileCardDataModel;
+    }
+
+
+    /**
+     * @Description: 给sms 短信接口的数据转换成MobileCardData
+     * @param smsInfo
+     * @return com.hz.source.master.core.model.result.FnMobileCardDataModel
+     * @date 2020/5/20 11:15
+     */
+    public   static MobileCardDataModel toSmsData(SmsInfo smsInfo){
+        DateModel dateModel =WecharMethod.getDate();
+        MobileCardDataModel   fnMobileCardDataModel = new   MobileCardDataModel();
+        BeanUtils.copy(dateModel,fnMobileCardDataModel);
+        fnMobileCardDataModel.setMarkPosition(smsInfo.getId());
+        fnMobileCardDataModel.setReportTime(smsInfo.getTime());
+        fnMobileCardDataModel.setPhoneNum(smsInfo.getPhone());
+        fnMobileCardDataModel.setSmsContent(smsInfo.getContent());
+        fnMobileCardDataModel.setSmsNum(smsInfo.getMessageCode());
         return fnMobileCardDataModel;
     }
 
