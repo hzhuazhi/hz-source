@@ -37,10 +37,10 @@ public class ResultController {
 
     @RequestMapping(value = "/sms", method = {RequestMethod.POST})
     public JsonResult<Object> smsRs(HttpServletRequest request, HttpServletResponse response, @RequestBody SmsData smsData) throws Exception{
-        String sgid = ComponentUtil.redisIdService.getNewId();
-        String cgid = "";
-        String token;
-        String ip = StringUtil.getIpAddress(request);
+//        String sgid = ComponentUtil.redisIdService.getNewId();
+//        String cgid = "";
+//        String token;
+//        String ip = StringUtil.getIpAddress(request);
 
         String data = "";
         log.error("SecretKey:"+smsData.getSecretKey());
@@ -60,7 +60,7 @@ public class ResultController {
             ResponseEncryptionJson resultDataModel = new ResponseEncryptionJson();
             resultDataModel.jsonData = "ok";
             // 返回数据给客户端
-            return JsonResult.successResult(resultDataModel, cgid, sgid);
+            return JsonResult.successResult(resultDataModel, "", "");
         }catch (Exception e){
             e.printStackTrace();
             return JsonResult.failedResult("数据异常","500");
@@ -153,30 +153,13 @@ public class ResultController {
 
     @RequestMapping(value = "/sendSms", method = {RequestMethod.POST})
     public JsonResult<Object> sendSms(HttpServletRequest request, HttpServletResponse response, @RequestBody SmsInfo sms) throws Exception{
-        String sgid = ComponentUtil.redisIdService.getNewId();
-        String cgid = "";
-        String token;
-        String ip = StringUtil.getIpAddress(request);
-
-        String data = "";
-//        log.error("SecretKey:"+sms.getKey());
-//        log.error("sender:"+smsData.get);
-//        log.error("PhoneId:"+smsData.getPhoneId());
-//        log.error("Content:"+smsData.getContent());
-//        boolean  flag  =   WecharMethod.isEffectiveSmsData(smsData);//是否有效
-//
-//        if(!flag){
-//            return JsonResult.failedResult("", "", "400");
-//        }
-
         MobileCardDataModel mobileCardDataModel = WecharMethod.toSmsData(sms);
-
         try{
             ComponentUtil.mobileCardDataService.addMobileCardData(mobileCardDataModel);
             ResponseEncryptionJson resultDataModel = new ResponseEncryptionJson();
             resultDataModel.jsonData = "ok";
             // 返回数据给客户端
-            return JsonResult.successResult(resultDataModel, cgid, sgid);
+            return JsonResult.successResult(resultDataModel, "", "");
         }catch (Exception e){
             e.printStackTrace();
             return JsonResult.failedResult("数据异常","500");
