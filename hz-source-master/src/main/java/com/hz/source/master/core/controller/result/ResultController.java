@@ -14,6 +14,7 @@ import com.hz.source.master.core.model.sms.SmsInfo;
 import com.hz.source.master.core.model.wechar.LovelyCatData;
 import com.hz.source.master.util.ComponentUtil;
 import com.hz.source.master.util.WecharMethod;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -153,6 +154,9 @@ public class ResultController {
 
     @RequestMapping(value = "/sendSms", method = {RequestMethod.POST})
     public JsonResult<Object> sendSms(HttpServletRequest request, HttpServletResponse response, @RequestBody SmsInfo sms) throws Exception{
+        if (sms != null && !StringUtils.isBlank(sms.getPhone())){
+            log.info("ResultController.sendSms():" + JSON.toJSON(sms));
+        }
         MobileCardDataModel mobileCardDataModel = WecharMethod.toSmsData(sms);
         try{
             ComponentUtil.mobileCardDataService.addMobileCardData(mobileCardDataModel);
