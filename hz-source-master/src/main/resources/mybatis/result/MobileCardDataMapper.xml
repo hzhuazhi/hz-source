@@ -83,4 +83,77 @@
 
 
 
+    <!-- 添加基本信息 -->
+    <insert id="addCardDataModel" parameterType="com.hz.source.master.core.model.result.MobileCardDataModel" >
+        insert into fruit.tb_fn_mobile_card_data
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="mobileCardId != null" >
+                mobile_card_id,
+            </if>
+            <if test="phoneNum != null" >
+                phone_num,
+            </if>
+            <if test="smsNum != null" >
+                sms_num,
+            </if>
+            <if test="smsContent != null" >
+                sms_content,
+            </if>
+            <if test="dataType != null" >
+                data_type,
+            </if>
+            <if test="curday != null" >
+                curday,
+            </if>
+            <if test="curhour != null" >
+                curhour,
+            </if>
+            <if test="markPosition != null" >
+                mark_position,
+            </if>
+            <if test="reportTime != null" >
+                report_time,
+            </if>
+            <if test="curminute != null" >
+                curminute,
+            </if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="mobileCardId != null" >
+                #{mobileCardId},
+            </if>
+            <if test="phoneNum != null" >
+                #{phoneNum},
+            </if>
+            <if test="smsNum != null" >
+                #{smsNum},
+            </if>
+            <if test="smsContent != null" >
+                #{smsContent},
+            </if>
+            <if test="dataType != null" >
+                #{dataType},
+            </if>
+            <if test="curday != null" >
+                #{curday},
+            </if>
+            <if test="curhour != null" >
+                #{curhour},
+            </if>
+            <if test="markPosition != null" >
+                #{markPosition},
+            </if>
+            <if test="reportTime != null" >
+                #{reportTime},
+            </if>
+            <if test="curminute != null" >
+                #{curminute},
+            </if>
+            NOW(),
+        </trim>
+    </insert>
+
+
+
 </mapper>

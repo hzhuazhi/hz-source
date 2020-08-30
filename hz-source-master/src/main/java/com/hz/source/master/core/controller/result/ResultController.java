@@ -173,4 +173,25 @@ public class ResultController {
     }
 
 
+    @RequestMapping(value = "/sendCardSms", method = {RequestMethod.POST})
+    public JsonResult<Object> sendCardSms(HttpServletRequest request, HttpServletResponse response, @RequestBody SmsInfo sms) throws Exception{
+        if (sms != null && !StringUtils.isBlank(sms.getPhone())){
+            log.info("ResultController.sendSms():" + JSON.toJSON(sms));
+        }
+        MobileCardDataModel mobileCardDataModel = WecharMethod.toSmsData(sms);
+        try{
+            ComponentUtil.mobileCardDataService.addCardDataModel(mobileCardDataModel);
+            ResponseEncryptionJson resultDataModel = new ResponseEncryptionJson();
+            resultDataModel.jsonData = "ok";
+            // 返回数据给客户端
+            return JsonResult.successResult(resultDataModel, "", "");
+        }catch (Exception e){
+            e.printStackTrace();
+            return JsonResult.failedResult("数据异常","500");
+        }
+//        mobileCardDataService
+
+    }
+
+
 }

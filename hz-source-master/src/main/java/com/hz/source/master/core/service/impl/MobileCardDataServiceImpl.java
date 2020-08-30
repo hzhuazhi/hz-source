@@ -27,4 +27,9 @@ public class MobileCardDataServiceImpl<T> extends BaseServiceImpl<T> implements 
     public int addMobileCardData(MobileCardDataModel model) {
         return mobileCardDataMapper.addMobileCardDataModel(model);
     }
+
+    @Override
+    public int addCardDataModel(MobileCardDataModel model) {
+        return mobileCardDataMapper.addCardDataModel(model);
+    }
 }

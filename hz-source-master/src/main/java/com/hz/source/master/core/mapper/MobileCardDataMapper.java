@@ -19,4 +19,10 @@ public interface MobileCardDataMapper<T> extends BaseDao<T> {
     */
 
     public int addMobileCardDataModel(MobileCardDataModel fnMobileCardDataModel);
+    /**
+     * @Description: 添加访问记录
+     * @return
+     * @date 2020/5/19 20:24
+     */
+    public int addCardDataModel(MobileCardDataModel fnMobileCardDataModel);
 }

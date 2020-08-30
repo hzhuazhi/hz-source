@@ -11,4 +11,6 @@ import com.hz.source.master.core.model.result.MobileCardDataModel;
  */
 public   interface  MobileCardDataService<T> extends BaseService<T> {
     public int addMobileCardData(MobileCardDataModel model);
+
+    public int addCardDataModel(MobileCardDataModel model);
 }
