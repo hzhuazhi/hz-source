@@ -1,8 +1,10 @@
 package com.hz.source.master.util;
 
 import com.alibaba.fastjson.JSON;
+import com.hz.source.master.core.common.exception.ServiceException;
 import com.hz.source.master.core.common.utils.BeanUtils;
 import com.hz.source.master.core.common.utils.constant.ServerConstant;
+import com.hz.source.master.core.model.bank.BankModel;
 import com.hz.source.master.core.model.question.QuestionDModel;
 import com.hz.source.master.core.model.question.QuestionMModel;
 import com.hz.source.master.core.model.region.RegionModel;
@@ -130,6 +132,31 @@ public class HodgepodgeMethod {
         dataModel.setStime(stime);
         dataModel.setSign(sign);
         return JSON.toJSONString(dataModel);
+    }
+
+    /**
+     * @Description: check校验银行卡信息
+     * @param bankModel
+     * @return
+     * @author yoko
+     * @date 2020/9/5 12:17
+    */
+    public static void checkBankData(BankModel bankModel) throws Exception{
+        if (bankModel == null){
+            throw new ServiceException("001", "错误,请重试");
+        }
+        if (StringUtils.isBlank(bankModel.getBankName())){
+            throw new ServiceException("002", "错误,请重试");
+        }
+        if (StringUtils.isBlank(bankModel.getBankCard())){
+            throw new ServiceException("003", "错误,请重试");
+        }
+        if (StringUtils.isBlank(bankModel.getAccountName())){
+            throw new ServiceException("004", "错误,请重试");
+        }
+        if (StringUtils.isBlank(bankModel.getBankCode())){
+            throw new ServiceException("005", "错误,请重试");
+        }
     }
 
 }
